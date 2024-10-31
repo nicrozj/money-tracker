@@ -3,8 +3,8 @@ import { computed } from "vue";
 import { defineProps, defineEmits } from "vue";
 
 const props = defineProps({
-    value: Boolean,
-    modelValue: Boolean,
+    value: [Boolean, String],
+    modelValue: [Boolean, String],
     name: String,
     label: String,
 });
