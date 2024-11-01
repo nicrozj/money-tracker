@@ -29,7 +29,6 @@ export { injectHead, useHead, useSeoMeta, useHeadSafe, useServerHead, useServerS
 export { useBalance } from '../composables/useBalance';
 export { useCategories } from '../composables/useCategories';
 export { useDateTime } from '../composables/useDateTime';
-export { useMoneyTracker } from '../composables/useMoneyTracker';
 export { useStorage } from '../composables/useStorage';
 export { useTransactions } from '../composables/useTransactions';
 export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';

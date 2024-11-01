@@ -1,11 +1,11 @@
 import { ref } from 'vue';
 import { useStorage } from './useStorage';
 
-export function useCategories() {
-  const { getItem, setItem } = useStorage();
-  const allCategories = ref(JSON.parse(getItem('categories') || "[]"));
-  const categoryInput = ref('');
+const { getItem, setItem } = useStorage();
+const allCategories = ref(JSON.parse(getItem('categories') || "[]"));
+const categoryInput = ref('');
 
+export function useCategories() {
   function addCategory() {
     allCategories.value.push(categoryInput.value);
     categoryInput.value = '';

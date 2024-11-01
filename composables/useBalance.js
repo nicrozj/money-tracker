@@ -1,19 +1,26 @@
-import { ref, onMounted } from 'vue';
-import { useStorage } from './useStorage';
+import { ref, onMounted, computed } from 'vue';
+import { useTransactions } from './useTransactions';
 
 export function useBalance() {
-  const balance = ref(0);
-  const { setItem, getItem } = useStorage();
+  const { transactions } = useTransactions();
 
-  balance.value = parseInt(getItem("balance")) || 0;
+  const balance = computed(() => {
+    return transactions.value.reduce((acc, t) => {
+      return t.type ? acc + t.sum : acc - t.sum;
+    }, 0);
+  });
 
-  function updateBalance(amount) {
-    balance.value += amount;
-    setItem('balance', balance.value);
-  }
+  const income = computed(() => {
+    return transactions.value.filter(t => t.type).reduce((sum, t) => sum + t.sum, 0);
+  });
+
+  const expenses = computed(() => {
+    return transactions.value.filter(t => !t.type).reduce((sum, t) => sum + t.sum, 0);
+  });
 
   return {
     balance,
-    updateBalance,
+    income,
+    expenses,
   };
 }

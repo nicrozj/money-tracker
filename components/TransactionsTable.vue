@@ -1,20 +1,16 @@
 <script setup>
-const { transactions } = defineProps({
-    transactions: {
-        type: Array,
-        required: true
-    },
-    removeTransaction: {
-        type: Function,
-        required: true 
-    }
-});
+import { useTransactions } from '../composables/useTransactions';
+
+const { transactions, removeTransaction } = useTransactions();
 
 const balanceClasses = {
     true: 'text-green-600',
     false: 'text-red-600'
 };
 
+watch(transactions, (newTransactions) => {
+    console.log('Transactions updated:', newTransactions);
+  });
 </script>
 
 <template>

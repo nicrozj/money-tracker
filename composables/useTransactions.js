@@ -1,23 +1,21 @@
-import { ref, onMounted } from 'vue';
-import { useBalance } from './useBalance';
+import { ref } from 'vue';
 import { useStorage } from './useStorage';
 import { useDateTime } from './useDateTime';
 
-export function useTransactions() {
-  const { balance, updateBalance } = useBalance();
-  const { getItem, setItem } = useStorage();
-  const { getDate, getTime } = useDateTime();
+const { getItem, setItem } = useStorage();
 
-  const transactions = ref(JSON.parse(getItem('transactions') || "[]"));
-  const descriptionInput = ref('');
-  const sumInput = ref('');
-  const selectCategory = ref('');
-  const typeTransaction = ref(true);
+
+const transactions = ref(JSON.parse(getItem('transactions') || "[]"));
+const descriptionInput = ref('');
+const sumInput = ref('');
+const selectCategory = ref('');
+const typeTransaction = ref(true);
+
+export function useTransactions() {
+  const { getDate, getTime } = useDateTime();
 
   function addTransaction() {
     const amount = parseInt(sumInput.value);
-    updateBalance(typeTransaction.value ? amount : -amount);
-    console.log(balance.value)
     transactions.value.push({
       title: descriptionInput.value,
       sum: amount,
@@ -33,14 +31,9 @@ export function useTransactions() {
 
   function removeTransaction(id) {
     const amount = parseInt(transactions.value[id].sum);
-    updateBalance(transactions.value[id].type ? -amount : amount);
     transactions.value.splice(id, 1);
     setItem('transactions', JSON.stringify(transactions.value));
   }
-
-  onMounted(() => {
-    balance.value = parseInt(getItem("balance")) || 0;
-  });
 
   return {
     transactions,
