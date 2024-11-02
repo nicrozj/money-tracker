@@ -21,12 +21,14 @@ export function useTransactions() {
       sum: amount,
       category: selectCategory.value,
       type: typeTransaction.value,
-      time: getTime(),
-      date: getDate(),
+      time: new Date(),
+      date: new Date(),
     });
     setItem('transactions', JSON.stringify(transactions.value));
     descriptionInput.value = '';
     sumInput.value = '';
+
+    console.log(transactions.value);
   }
 
   function removeTransaction(id) {

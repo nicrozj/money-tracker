@@ -1,7 +1,9 @@
 <script setup>
 import { useTransactions } from '../composables/useTransactions';
+import { useDateTime } from '../composables/useDateTime';
 
 const { transactions, removeTransaction } = useTransactions();
+const { getTime, getDate } = useDateTime();
 
 const balanceClasses = {
     true: 'text-green-600',
@@ -48,7 +50,7 @@ watch(transactions, (newTransactions) => {
                         {{ transaction.type ? '+' : '-' }}{{ transaction.sum }}
                     </td>
                     <td class="px-6 py-4 text-center">
-                        {{ transaction.time }} {{ transaction.date }}
+                        {{ getTime(transaction.time) }} {{ getDate(transaction.date) }}
                     </td>
                     <td class="flex justify-center px-6 py-4">
                         <button @click="removeTransaction(id)">

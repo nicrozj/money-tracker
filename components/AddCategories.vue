@@ -1,7 +1,7 @@
 <script setup>
   import { useCategories } from '../composables/useCategories';
 
-  const { categoryInput, addCategory } = useCategories();
+  const { categoryAddInput, addCategory } = useCategories();
 </script>
 
 <template>
@@ -10,7 +10,7 @@
     <div class="flex items-center gap-2">
       <UTextInput
         autocomplete="off"
-        v-model="categoryInput"
+        v-model="categoryAddInput"
         placeholder="Категория"
         type="text"
       />

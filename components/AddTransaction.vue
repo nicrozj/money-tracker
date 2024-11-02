@@ -1,7 +1,6 @@
 <script setup>
 import { useTransactions } from "../composables/useTransactions";
 import { useCategories } from "../composables/useCategories";
-import { useBalance } from "../composables/useBalance";
 
 const radioOptions = [
   { value: true, label: "Доход" },
