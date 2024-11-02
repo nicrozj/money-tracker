@@ -21,7 +21,6 @@ export function useTransactions() {
       sum: amount,
       category: selectCategory.value,
       type: typeTransaction.value,
-      time: new Date(),
       date: new Date(),
     });
     setItem('transactions', JSON.stringify(transactions.value));

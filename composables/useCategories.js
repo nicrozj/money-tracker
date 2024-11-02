@@ -13,9 +13,9 @@ export function useCategories() {
     setItem('categories', JSON.stringify(allCategories.value));
   }
 
-  function deleteCategory(category) {
-    allCategories.value = allCategories.value.filter(item => item != category);
-    categoryDeleteInput.value = '';
+  function deleteCategory(id) {
+    allCategories.value.splice(+id, 1);
+    console.log(allCategories.value)
     setItem('categories', JSON.stringify(allCategories.value));
   }
 

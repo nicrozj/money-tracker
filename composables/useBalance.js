@@ -26,8 +26,7 @@ export function useBalance() {
     let lastTransactions = transactions.value.filter(transaction => {
       return getDaysFromMs(new Date() - new Date(transaction.date)) <= 7;
     });
-
-    console.log(lastTransactions);
+    
     if (lastTransactions.length) {
       return lastTransactions.reduce((sum, transaction) => sum + transaction.sum, 0);
     }
@@ -39,7 +38,6 @@ export function useBalance() {
       return getDaysFromMs(new Date() - new Date(transaction.date)) <= 30;
     });
 
-    console.log(lastTransactions);
     if (lastTransactions.length) {
       return lastTransactions.reduce((sum, transaction) => sum + transaction.sum, 0);
     }
@@ -51,7 +49,6 @@ export function useBalance() {
       return getDaysFromMs(new Date() - new Date(transaction.date)) <= 365;
     });
 
-    console.log(lastTransactions);
     if (lastTransactions.length) {
       return lastTransactions.reduce((sum, transaction) => sum + transaction.sum, 0);
     }
